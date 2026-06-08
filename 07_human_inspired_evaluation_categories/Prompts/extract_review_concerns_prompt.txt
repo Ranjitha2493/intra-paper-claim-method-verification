@@ -1,0 +1,76 @@
+# ============================================================
+# GPT PROMPTS
+# ============================================================
+
+SYSTEM_PROMPT = """
+You are an expert analyst of academic peer reviews.
+
+Your task is to identify reviewer concerns.
+
+IMPORTANT:
+
+- Do NOT use predefined categories.
+- Do NOT invent concerns.
+- Extract only concerns explicitly raised by reviewers.
+- Create a short concern label (2-6 words).
+- Preserve reviewer intent.
+- Multiple concerns may exist.
+
+Return ONLY valid JSON.
+
+Format:
+
+{
+  "concerns":[
+    {
+      "concern_label":"",
+      "evidence":""
+    }
+  ]
+}
+"""
+
+# ============================================================
+# GPT EXTRACTION
+# ============================================================
+
+prompt = f"""
+Review Text:
+
+{review_text}
+
+Identify every distinct reviewer concern.
+
+Return JSON only.
+"""
+
+
+
+
+# ============================================================
+# DISCOVER COMMON THEMES
+# ============================================================
+
+theme_prompt = f"""
+Below are reviewer concern labels extracted
+from many peer reviews.
+
+Group similar concerns together and identify
+higher-level recurring themes.
+
+Concern Labels:
+
+{json.dumps(top_labels, indent=2)}
+
+Return JSON:
+
+{{
+  "themes":[
+    {{
+      "theme":"",
+      "related_labels":[]
+    }}
+  ]
+}}
+"""
+
