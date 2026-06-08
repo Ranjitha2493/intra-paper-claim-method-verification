@@ -1,0 +1,115 @@
+{
+  "forum_id": "cRR0oDFEBC",
+  "status": "OK",
+  "generated_at": "2026-06-08 03:47:52",
+  "paper_title": "N/A",
+  "subfolder": "cRR0oDFEBC",
+  "total_reviewers": 5,
+  "processed_at": "2026-06-08 03:47:33",
+  "reviewers": [
+    {
+      "reviewer_id": "JIhWxR2Kd3",
+      "rating": "6",
+      "confidence": "2",
+      "soundness": "3"
+    },
+    {
+      "reviewer_id": "RWRXvQYD96",
+      "rating": "8",
+      "confidence": "4",
+      "soundness": "3"
+    },
+    {
+      "reviewer_id": "HjUTaW9dTN",
+      "rating": "8",
+      "confidence": "4",
+      "soundness": "2"
+    },
+    {
+      "reviewer_id": "Ep2UgeDbd7",
+      "rating": "8",
+      "confidence": "3",
+      "soundness": "3"
+    },
+    {
+      "reviewer_id": "IsRw3i9Twv",
+      "rating": "6",
+      "confidence": "4",
+      "soundness": "3"
+    }
+  ],
+  "evaluation": {
+    "Novelty Issues": {
+      "Issuess_found": true,
+      "items": [
+        {
+          "reviewer_id": "JIhWxR2Kd3",
+          "section": "WEAKNESSES",
+          "comment_excerpt": "Novelty: Automatic instruction verification might not be an entirely new idea. Works in this area are CodeLlama2, PLUM, LLaMA3, SelfCodeAlign, and DeepSeek-Coder-V2. In fact, research efforts such as code-based execution feedback and automated instruction alignment have been made. For example, CodeLlama2 and LLaMA3 utilized the base of code-based synthesis and validation frameworks in their architectures for better performance on top of instruction-following tasks, which underlines code execution as a natural source of feedback. Simultaneously, these related works suggest that perhaps AUTOIF, with the novelty of scalability and data synthesis, is not really a new fundamental direction in the space."
+        },
+        {
+          "reviewer_id": "IsRw3i9Twv",
+          "section": "WEAKNESSES",
+          "comment_excerpt": "The idea of using programs to validate instruction-following is not novel, as it has been used in IFEval. Moreover, training with execution feedback is also not new; it has been widely used by training code LLMs [1-3]."
+        }
+      ]
+    },
+    "Methodology Issues": {
+      "Issuess_found": true,
+      "items": [
+        {
+          "reviewer_id": "RWRXvQYD96",
+          "section": "WEAKNESSES",
+          "comment_excerpt": "Section 3.2: cross-verification can be weak as it essentially assumes test-function self-consistency as correctness. Not sure how reliable is self-consistency here as (i) bad tests can kill the right function and (ii) tests and functions can be broken all together result in corrupted data quality."
+        },
+        {
+          "reviewer_id": "HjUTaW9dTN",
+          "section": "WEAKNESSES",
+          "comment_excerpt": "There's a missing baseline where responses are validated through the LLM itself without code. Without the baseline, it's unclear how valuable the verification function and test cases are."
+        },
+        {
+          "reviewer_id": "IsRw3i9Twv",
+          "section": "WEAKNESSES",
+          "comment_excerpt": "Based on the proposed workflow, AUTOIF is hard to scale to complex instructions, where the queries are totally quantifiable. AUTOIF cannot easily work for semantically rich instructions, which cannot be evaluated via execution. In addition, real-world scenarios that can be validated via programs may require various dependencies and APIs. AUTOIF is not scalable under these practical cases."
+        }
+      ]
+    },
+    "Clarity Issues": {
+      "Issuess_found": true,
+      "items": [
+        {
+          "reviewer_id": "Ep2UgeDbd7",
+          "section": "WEAKNESSES",
+          "comment_excerpt": "However, examples on failed cases and illustration of these categories of consistent failure would help understand scope of next steps and areas of improvement that has been brought about by the method. Along with the limited domain of seed instructions in terms of string manipulation only, which could be diversified."
+        }
+      ]
+    },
+    "Others": [
+      {
+        "reviewer_id": "JIhWxR2Kd3",
+        "section": "WEAKNESSES",
+        "category_name": "Scalability Issues",
+        "comment_excerpt": "Generalization Concerns: Concentration on verifiable instructions has been made amply clear in the method section. AUTOIF framework uses code for instruction verification, which in itself inherently limits the generalization to open-ended or subjective instructions. While the paper does highlight improvements across benchmarks such as IFEval, it does not really investigate how the approach generalizes when the tasks are less structured or ambiguous. Though the second concern with respect to AUTOIF biasing the models to easily verifiable instructions might be well-taken, given the current evidence, it should be framed as a hypothesis."
+      },
+      {
+        "reviewer_id": "JIhWxR2Kd3",
+        "section": "WEAKNESSES",
+        "category_name": "Methodological Diversity Issues",
+        "comment_excerpt": "Somewhat worrying lack of methodological diversity: there is heavy focus on execution feedback. Other methods are not considered, like human feedback or model-based evaluation. Still, the paper does state that execution feedback and iterative optimization work fine, so there is a possibility that with more methods added, the instruction-following capabilities could be further improved."
+      },
+      {
+        "reviewer_id": "IsRw3i9Twv",
+        "section": "WEAKNESSES",
+        "category_name": "Scope Limitations",
+        "comment_excerpt": "The instruction-following evaluations on IFBench and FollowBench lack practicability. These two benchmarks only contain quantifiable instructions, like word counts. The authors should consider more practical scenarios like the one in BigCodeBench [4] for the instruction-following evaluation."
+      },
+      {
+        "reviewer_id": "IsRw3i9Twv",
+        "section": "WEAKNESSES",
+        "category_name": "Generalizability Issues",
+        "comment_excerpt": "The current evaluation is English-only. The authors should evaluate their models on multilingual setups to demonstrate their generalisability."
+      }
+    ]
+  },
+  "overall_summary": "Automatic instruction verification, as explored in the paper, faces significant challenges in terms of novelty, methodology, and scalability. The concept is not entirely new, with existing works like CodeLlama2, PLUM, LLaMA3, SelfCodeAlign, and DeepSeek-Coder-V2 already utilizing code-based synthesis and validation frameworks. The use of programs to validate instruction-following has been previously implemented in IFEval, and training with execution feedback is a well-established practice in training code LLMs. Methodologically, the cross-verification approach in Section 3.2 is criticized for its reliance on test-function self-consistency, which may not be reliable due to potential issues with test and function integrity. The absence of a baseline where responses are validated through the LLM itself without code further complicates the assessment of the verification function's value. AUTOIF's scalability is questioned, particularly for complex or semantically rich instructions that cannot be evaluated via execution, and real-world scenarios requiring various dependencies and APIs pose additional challenges. Clarity could be improved with examples of failed cases and a broader domain of seed instructions beyond string manipulation. The focus on verifiable instructions limits generalization to open-ended or subjective tasks, and the lack of methodological diversity, such as incorporating human feedback or model-based evaluation, is concerning. The instruction-following evaluations on IFBench and FollowBench are limited to quantifiable instructions, lacking practical applicability, and the evaluation's English-only scope raises questions about the model's generalizability to multilingual contexts."
+}

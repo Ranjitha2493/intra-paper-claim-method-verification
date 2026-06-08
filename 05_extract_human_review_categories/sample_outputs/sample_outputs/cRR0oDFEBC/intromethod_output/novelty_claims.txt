@@ -1,0 +1,46 @@
+=== EXTRACTED NOVELTY CLAIMS ===
+
+1. First scalable and reliable method for automatically generating instruction-following training data
+2. Transforming instruction-following alignment into code verification
+3. Using execution feedback as a natural reward model for DPO algorithms
+4. Achieving over 90% accuracy in IFEval's Loose instruction accuracy without compromising general abilities
+
+
+=== FULL STRUCTURED EXTRACTION (JSON) ===
+{
+  "methods": [
+    "AUTOIF: Automatically generating instruction-following training data using code verification",
+    "Execution feedback-based rejection sampling",
+    "Self-instruct for generating augmented instruction sets",
+    "Direct Preference Optimization (DPO) with execution feedback",
+    "On-policy iterative enhancement of instruction-following capabilities"
+  ],
+  "problems": [
+    "Enhancing instruction-following capabilities of large language models",
+    "Scalability and reliability in generating instruction-following training data",
+    "Limitations of manual annotation and behavior imitation methods"
+  ],
+  "datasets": [
+    "IFEval",
+    "Five general instruction-following datasets"
+  ],
+  "metrics": [
+    "Loose Instruction accuracy"
+  ],
+  "results": [
+    {
+      "metric": "Loose Instruction accuracy",
+      "value": "88.0% with Qwen2-72B"
+    },
+    {
+      "metric": "Loose Instruction accuracy",
+      "value": "90.4% with LLaMA3-70B"
+    }
+  ],
+  "novelty_claims": [
+    "First scalable and reliable method for automatically generating instruction-following training data",
+    "Transforming instruction-following alignment into code verification",
+    "Using execution feedback as a natural reward model for DPO algorithms",
+    "Achieving over 90% accuracy in IFEval's Loose instruction accuracy without compromising general abilities"
+  ]
+}

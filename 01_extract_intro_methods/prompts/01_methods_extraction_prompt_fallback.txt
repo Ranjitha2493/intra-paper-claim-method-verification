@@ -1,0 +1,14 @@
+System:
+Academic paper parser
+
+User:
+Extract the METHODS or METHODOLOGY section from the markdown paper.
+
+Return exactly:
+
+METHODS_START
+[section text]
+METHODS_END
+
+If none exists return:
+NO_METHOD_SECTION_FOUND

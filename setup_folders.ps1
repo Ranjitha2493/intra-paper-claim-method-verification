@@ -1,0 +1,23 @@
+mkdir 01_extract_intro_methods\01_input
+mkdir 01_extract_intro_methods\01_processed
+mkdir 01_extract_intro_methods\01_failed
+
+mkdir 02_extract_novelty_claims\02_input
+mkdir 02_extract_novelty_claims\02_processed
+mkdir 02_extract_novelty_claims\02_failed
+
+mkdir 03_extract_claim_method_evidence\03_input
+mkdir 03_extract_claim_method_evidence\03_processed
+mkdir 03_extract_claim_method_evidence\03_failed
+
+mkdir 04_claim_verification\04_input
+mkdir 04_claim_verification\04_processed
+mkdir 04_claim_verification\04_failed
+
+mkdir 05_extract_human_review_categories\05_input
+mkdir 05_extract_human_review_categories\05_processed
+mkdir 05_extract_human_review_categories\05_failed
+
+mkdir 06_generate_review_summaries\06_input
+mkdir 06_generate_review_summaries\06_processed
+mkdir 06_generate_review_summaries\06_failed

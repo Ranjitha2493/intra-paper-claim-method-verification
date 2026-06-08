@@ -1,0 +1,119 @@
+Prompt 1: Concern extraction system prompt
+system_prompt = "You are an expert academic reviewer. Respond with ONLY the paragraph, no preamble, no JSON, no extra text."
+
+
+    user_prompt = f"""You are given structured reviewer concern excerpts for a research paper.
+Your task is to write a single overall_summary paragraph.
+
+Forum ID    : {forum_id}
+Paper Title : {paper_title}
+
+REVIEWER CONCERN EXCERPTS (grouped by category):
+{concerns_block}
+
+INSTRUCTIONS:
+- Write ONE single fluent paragraph synthesizing all concerns across novelty, methodology, clarity, and other issues
+- Start directly with the most critical specific concern — do NOT open with a generic sentence
+  describing what the paper does or what categories are being evaluated
+- Lift specific phrases and details directly from the excerpts (e.g. actual technique names,
+  actual tools mentioned such as "entity matching, semantic embedding search, co-citation,
+  and clustering" or "GPT-4o")
+- Do NOT use any attribution language — no "one reviewer", "another reviewer",
+  "a reviewer noted", "reviewers highlighted", or any similar constructions
+- No bullet points, no category headers, no sub-sections — just one flowing paragraph
+- Every claim must be specific and traceable to something in the excerpts — no vague
+  generalizations like "relies on existing techniques" without the specific detail
+- The paragraph should read like the critical analysis section of an academic paper"""
+
+
+Prompt 2: Concern extraction user prompt
+
+  extraction_prompt = f"""Evaluate the following human reviewer comments for this research paper.
+
+Forum ID    : {forum_id}
+Paper Title : {paper_title}
+Subfolder   : {subfolder_name}
+
+REVIEWER COMMENTS:
+{comments_block}
+
+EVALUATION CATEGORIES:
+{categories_text}
+
+INSTRUCTIONS:
+- Read ALL reviewer comments carefully
+- Extract ALL concerns raised by reviewers about the paper's approach, technique,
+  pipeline, evaluation design, experimental setup, or implementation — when in doubt,
+  include it rather than skip it
+- Do NOT filter out concerns unless they are purely about LaTeX formatting,
+  typos, or citation style with no technical substance
+- Ignore comments purely about writing style, formatting, or references
+- Extract EVERY distinct concern as a separate item — do NOT merge them
+- For comment_excerpt copy the FULL original paragraph verbatim — do not summarize
+- Always record the exact Reviewer ID and Section name
+- Extract ALL matching concerns for each category — if 3 reviewers raise concerns,
+  all 3 must appear as separate items; do not stop at 1 or 2
+- For comment_excerpt, copy the complete sentence or paragraph exactly as written
+  in the review — do not truncate, paraphrase, or split a single paragraph into
+  multiple excerpts
+
+Return ONLY this JSON:
+{{
+    "forum_id": "{forum_id}",
+    "paper_title": "{paper_title}",
+    "subfolder": "{subfolder_name}",
+    "total_reviewers": {len(reviews)},
+    "processed_at": "{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}",
+    "reviewers": [
+        {{
+            "reviewer_id": "id",
+            "rating": "score",
+            "confidence": "score",
+            "soundness": "score"
+        }}
+    ],
+    "evaluation": {{
+        "Novelty Concern": {{
+            "concerns_found": true,
+            "items": [
+                {{
+                    "reviewer_id": "reviewer ID",
+                    "section": "section name e.g. WEAKNESSES",
+                    "comment_excerpt": "full paragraph verbatim"
+                }}
+            ]
+        }},
+        "Methodology Issues": {{
+            "concerns_found": true,
+            "items": [
+                {{
+                    "reviewer_id": "reviewer ID",
+                    "section": "section name",
+                    "comment_excerpt": "full paragraph verbatim"
+                }}
+            ]
+        }},
+        "Clarity Issues": {{
+            "concerns_found": true,
+            "items": [
+                {{
+                    "reviewer_id": "reviewer ID",
+                    "section": "section name",
+                    "comment_excerpt": "full paragraph verbatim"
+                }}
+            ]
+        }},
+        "Others": [
+            {{
+                "reviewer_id": "reviewer ID",
+                "section": "section name",
+                "category_name": "specific concern name",
+                "comment_excerpt": "full paragraph verbatim"
+            }}
+        ]
+    }}
+}}"""
+
+
+
+Prompt 3: Summary generation prompt

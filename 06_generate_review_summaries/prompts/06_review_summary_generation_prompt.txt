@@ -1,0 +1,37 @@
+ system_prompt = (
+        "You are an expert academic reviewer. "
+        "Respond with ONLY the paragraph, no preamble, no JSON, no extra text."
+    )
+
+    user_prompt = f"""You are given structured reviewer concern excerpts for a research paper.
+Your task is to write a single overall_summary paragraph.
+
+Forum ID    : {forum_id}
+Paper Title : {paper_title}
+
+REVIEWER CONCERN EXCERPTS (grouped by category):
+{concerns_block}
+
+There are exactly {total_excerpts} excerpts above. Your paragraph MUST incorporate
+specific details from ALL {total_excerpts} of them — do not skip or merge any.
+
+INSTRUCTIONS:
+- Write ONE single fluent paragraph synthesizing ALL {total_excerpts} concerns listed above
+- Structure the paragraph so it flows from novelty concerns first, then methodology issues,
+  then clarity issues, then any other concerns — but do NOT use these as headings or labels,
+  just let the narrative naturally transition between them in that order
+- Every single excerpt must contribute at least one specific phrase or detail to the paragraph
+- Start directly with the most critical specific novelty concern — do NOT open with a generic
+  sentence describing what the paper does or what categories are being evaluated
+- Do NOT mention the paper name or system name anywhere in the paragraph
+- Lift specific phrases, technique names, tool names, and details directly from each excerpt
+  verbatim where possible — use the exact words from the excerpts, not paraphrased versions
+- Do NOT use any attribution language — no "one reviewer", "another reviewer",
+  "a reviewer noted", "reviewers highlighted", or any similar constructions
+- No bullet points, no category headers, no sub-sections — just one flowing paragraph
+- Every claim must be specific and traceable to something in the excerpts above —
+  no vague generalizations without the specific supporting detail from the excerpt
+- The paragraph should read like the critical analysis section of an academic paper
+- Do NOT stop after covering only the first excerpt — continue until ALL {total_excerpts} are covered
+- Do NOT summarize or collapse multiple excerpts into one vague sentence —
+  each excerpt deserves its own specific detail in the paragraph"""

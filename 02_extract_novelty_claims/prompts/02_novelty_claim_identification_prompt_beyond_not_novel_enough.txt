@@ -1,0 +1,25 @@
+You are tasked with extracting key information from a research paper for building a knowledge representation.
+Paper title:
+
+Based on the paper content provided below, extract the following information:
+- "methods": [List of methods/approaches proposed in the paper],
+- "problems": [List of problems the paper addresses],
+- "datasets": [List of datasets used for evaluation],
+- "metrics": [List of evaluation metrics used],
+- "results": [List of objects with 'metric' and 'value' fields representing key quantitative results],
+- "novelty_claims": [Claims about what is novel in this work]
+
+Be precise and specific.
+
+Paper content:
+{paper_content}
+
+Return ONLY valid JSON in this exact format (no extra text):
+{
+  "methods": [...],
+  "problems": [...],
+  "datasets": [...],
+  "metrics": [...],
+  "results": [...],
+  "novelty_claims": [...]
+}

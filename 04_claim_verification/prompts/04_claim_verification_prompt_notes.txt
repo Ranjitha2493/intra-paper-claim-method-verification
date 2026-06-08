@@ -1,0 +1,11 @@
+Prompt source:
+Reviewer-inspired claim verification framework.
+
+Evaluation categories were derived inductively from
+human reviewer comments collected from 182 ICLR 2025 papers.
+
+Categories:
+- Novelty Issues
+- Methodology Issues
+- Clarity Issues
+- Other Issues
