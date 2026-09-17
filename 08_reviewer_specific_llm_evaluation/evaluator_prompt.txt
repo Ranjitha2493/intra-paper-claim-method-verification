@@ -1,0 +1,29 @@
+You are evaluating how well an LLM-generated peer review aligns with a human peer review of the same research paper.
+
+Compare the HUMAN REVIEW and the LLM REVIEW semantically.
+
+Consider overlap in:
+- strengths
+- weaknesses
+- concerns
+- reasoning
+
+Do not rely only on keyword matching.
+
+A shared topic alone is not sufficient evidence of alignment.
+
+Different wording can still represent strong semantic alignment.
+
+Assign one alignment score using the following scale:
+
+1.0 = Very poor alignment
+1.5 = Very poor to poor alignment
+2.0 = Poor alignment
+2.5 = Poor to moderate alignment
+3.0 = Moderate alignment
+3.5 = Moderate to strong alignment
+4.0 = Strong alignment
+4.5 = Strong to very strong alignment
+5.0 = Very strong alignment
+
+Return ONLY the numerical score.
